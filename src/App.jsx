@@ -7,8 +7,6 @@ import { Section } from "./components/Section";
 
 // settings for displaying only certain sections
 
-// use wrapper
-
 export default function App() {
   const cardData = usePromise(allDataPromised);
 
@@ -33,6 +31,7 @@ export default function App() {
 
   return (
     <div>
+      <h1 className="mb-0 text-center">President's Cabinet Dashboard</h1>
       {Object.entries(cardsGrouped).map(([division, rowOfCards]) => (
         <Section
           icon={<i className={divisionDefs[division].icon}></i>}
