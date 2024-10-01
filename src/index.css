@@ -7,3 +7,27 @@
   --bs-box-shadow-lg: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
     0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 }
+
+.page > div {
+  margin: 0 !important;
+}
+
+.page {
+  padding: 1.5rem !important;
+}
+
+.offcanvas-btn {
+  display: none !important;
+}
+
+[data-bs-target="#fullscreenWindow"] {
+  display: none !important;
+}
+
+.page.offset-xxl-1 {
+  margin-left: 0;
+}
+
+.page.col-xxl-10 {
+  width: 100%;
+}

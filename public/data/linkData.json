@@ -1,0 +1,42 @@
+[
+  {
+    "org_title": "CPE",
+    "link_title": "KCEWS Postseondary Feedback Report",
+    "link": "https://kcews.ky.gov/Latest/PSFR"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "Kentucky Progress Report",
+    "link": "https://kcewsreports.ky.gov/t/CPE/views/Progress_Report_Dashboard/State?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link&:isGuestRedirectFromVizportal=y&:embed=y"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "KY Academic Program Outcomes Report 982260685",
+    "link": "https://kcewsreports.ky.gov/t/KCEWS/views/KentuckyAcademicProgramOutcomesReport/WorkforceOutcomes?%3AshowAppBanner=false&%3Adisplay_count=n&%3AshowVizHome=n&%3Aorigin=viz_share_link&%3AisGuestRedirectFromVizportal=y&%3Aembed=y"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "Preliminary Enrollment - CPE will remove later",
+    "link": "https://kcewsreports.ky.gov/t/CPE/views/PreliminaryEnrollmentSummary/EnrollmentTrend?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "Data Center",
+    "link": "https://reports.ky.gov/t/CPE/views/KentuckyPostsecondaryEducationInteractiveDataDashboard/Navigation?%3AshowAppBanner=false&%3Adisplay_count=n&%3AshowVizHome=n&%3Aorigin=viz_share_link&%3AisGuestRedirectFromVizportal=y&%3Aembed=y"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "FTE Report",
+    "link": "https://reports.ky.gov/t/CPE/views/FTE_16026969077550/FTEInstitution?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link&:isGuestRedirectFromVizportal=y&:embed=y"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "SHEF - State Higher Ed Finance",
+    "link": "https://reports.ky.gov/t/CPE/views/KentuckyPostsecondaryEducationInteractiveDataDashboard/SHEF?%3AshowAppBanner=false&%3Adisplay_count=n&%3AshowVizHome=n&%3Aorigin=viz_share_link&%3AisGuestRedirectFromVizportal=y&%3Aembed=y"
+  },
+  {
+    "org_title": "CPE",
+    "link_title": "MSPSR - Multi-State Postsecondary Report",
+    "link": "https://kcews.ky.gov/Reports/Tableau/2021_MSPSR"
+  }
+]
