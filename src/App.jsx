@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <div>
-      <h1 className="mb-0 text-center">President's Cabinet Dashboard</h1>
+      <h1 className="mb-0 text-center">President&apos;s Cabinet Dashboard</h1>
       {Object.entries(cardsGrouped).map(([division, rowOfCards]) => (
         <Section
           icon={<i className={divisionDefs[division].icon}></i>}
