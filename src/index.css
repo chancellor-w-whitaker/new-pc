@@ -31,3 +31,7 @@
 .page.col-xxl-10 {
   width: 100%;
 }
+
+.swiper-pagination {
+  bottom: 0 !important;
+}

@@ -26,8 +26,8 @@ export const Section = ({
         autoplay={{ pauseOnMouseEnter: true }}
         pagination={{ clickable: true }}
         modules={[Autoplay, Pagination]}
+        className="pt-3 pb-4"
         slidesPerView={1}
-        className="py-3"
       >
         {children.map((element, index) => (
           <SwiperSlide key={index}>

@@ -1,10 +1,14 @@
 import { isNumericString } from "../helpers/isNumericString";
 import { TruncatedListItem } from "./TruncatedListItem";
 
+// maroon logos
+
 export const Card = (props) => {
   const isSpecial = props.elementType === "Special";
 
-  const As = isSpecial ? "a" : "div";
+  const hasLink = props.link;
+
+  const As = hasLink ? "a" : "div";
 
   const processedProps = isSpecial
     ? {
@@ -27,7 +31,7 @@ export const Card = (props) => {
     date,
   } = processedProps;
 
-  const anchorProps = isSpecial
+  const anchorProps = hasLink
     ? { rel: "noreferrer", target: "_blank", href }
     : { target: null, href: null, rel: null };
 
@@ -138,9 +142,15 @@ export const Card = (props) => {
     </>
   );
 
+  const termDate = [renderString(term), renderDate(date)];
+
+  if (termDate[0] === "ㅤ" && termDate[1] !== "ㅤ") {
+    termDate.reverse();
+  }
+
   return (
     <As
-      className="card rounded-3 shadow-sm fw-medium text-muted small position-relative overflow-hidden text-decoration-none text-center"
+      className="card border-secondary rounded-3 shadow-sm fw-medium text-muted small position-relative overflow-hidden text-decoration-none text-center"
       style={{ width: 250 }}
       {...anchorProps}
     >
@@ -163,7 +173,7 @@ export const Card = (props) => {
         )}
         style={isSpecial ? { borderBottomColor: "transparent" } : {}}
       >
-        <div className="text-truncate">{renderString(term)}</div>
+        <div className="text-truncate">{termDate[0]}</div>
       </div>
       <div
         className={joinClasses(
@@ -172,7 +182,7 @@ export const Card = (props) => {
         )}
       >
         <ul className="list-unstyled">
-          <TruncatedListItem>{renderDate(date)}</TruncatedListItem>
+          <TruncatedListItem>{termDate[1]}</TruncatedListItem>
         </ul>
         <ul
           className={joinClasses(

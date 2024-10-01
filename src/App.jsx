@@ -34,7 +34,12 @@ export default function App() {
       <h1 className="mb-0 text-center">President&apos;s Cabinet Dashboard</h1>
       {Object.entries(cardsGrouped).map(([division, rowOfCards]) => (
         <Section
-          icon={<i className={divisionDefs[division].icon}></i>}
+          icon={
+            <i
+              className={divisionDefs[division].icon}
+              style={{ color: "#611f34" }}
+            ></i>
+          }
           header={divisionDefs[division].header}
           key={division}
         >
@@ -43,7 +48,10 @@ export default function App() {
       ))}
       <SubContainer className="pb-4">
         <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">
-          <i className="fa-solid fa-arrow-up-right-from-square"></i>
+          <i
+            className="fa-solid fa-arrow-up-right-from-square"
+            style={{ color: "#611f34" }}
+          ></i>
           <div className="text-truncate">Other Links</div>
         </h2>
         <div className="row gap-3">

@@ -1,0 +1,34 @@
+[
+  {
+    "elementType": "Special",
+    "division": "CPE Metrics",
+    "metric": "Diversity",
+    "order": 0,
+    "timeFactor": "fas fa-chart-line",
+    "term": "N/A",
+    "date": "N/A",
+    "value": 0,
+    "change": "N/A",
+    "link": "https://www.irserver2.eku.edu/Reports/CPE/Metrics/Diversity",
+    "description": "N/A",
+    "change_perc": "N/A",
+    "Current_app": null,
+    "Last_Year_app": null
+  },
+  {
+    "elementType": "Special",
+    "division": "CPE Metrics",
+    "metric": "KPI",
+    "order": 0,
+    "timeFactor": "fas fa-chart-line",
+    "term": "N/A",
+    "date": "N/A",
+    "value": 0,
+    "change": "N/A",
+    "link": "https://www.irserver2.eku.edu/Reports/CPE/Metrics/KPI",
+    "description": "N/A",
+    "change_perc": "N/A",
+    "Current_app": null,
+    "Last_Year_app": null
+  }
+]
