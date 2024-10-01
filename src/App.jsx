@@ -46,7 +46,7 @@ export default function App() {
           <i className="fa-solid fa-arrow-up-right-from-square"></i>
           <div className="text-truncate">Other Links</div>
         </h2>
-        <div className="row">
+        <div className="row gap-3">
           <div className="col">
             <h5 className="text-truncate">
               Council on Postsecondary Education (CPE)
