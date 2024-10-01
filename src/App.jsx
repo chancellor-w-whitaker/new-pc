@@ -51,6 +51,8 @@ const divisionData = {
 
 // settings for displaying certain sections
 // responsiveness stuff
+// smaller font
+// fix link cards
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
@@ -90,26 +92,33 @@ export default function App() {
 }
 
 const Card = (props) => {
-  const processedProps =
-    props.elementType === "Special"
-      ? {
-          ...Object.fromEntries(
-            Object.entries(props).map(([key]) => [key, ""])
-          ),
-          value: <i className={props.timeFactor}></i>,
-          metric: props.metric,
-        }
-      : props;
+  const isSpecial = props.elementType === "Special";
+
+  const As = isSpecial ? "a" : "div";
+
+  const processedProps = isSpecial
+    ? {
+        ...Object.fromEntries(Object.entries(props).map(([key]) => [key, ""])),
+        value: <i className={props.timeFactor}></i>,
+        metric: props.metric,
+        link: props.link,
+      }
+    : props;
 
   const {
     change_perc: changePercentage,
     timeFactor,
+    link: href,
     metric,
     change,
     value,
     term,
     date,
   } = processedProps;
+
+  const anchorProps = isSpecial
+    ? { rel: "noreferrer", target: "_blank", href }
+    : { target: null, href: null, rel: null };
 
   function percentStringToNumber(percentString) {
     const numberString = percentString.replace("%", "");
@@ -188,29 +197,62 @@ const Card = (props) => {
       .filter((string) => typeof string === "string" && string.length > 0)
       .join(" ");
 
+  const focalPoint = (
+    <>
+      <TruncatedListItem className="fw-medium text-primary fs-3">
+        {renderNumber(value)}
+      </TruncatedListItem>
+      <TruncatedListItem title={renderString(metric)}>
+        {renderString(metric)}
+      </TruncatedListItem>
+    </>
+  );
+
   return (
-    <div className="card rounded-3 shadow-sm" style={{ width: 250 }}>
+    <As
+      className="card rounded-3 shadow-sm small position-relative overflow-hidden text-decoration-none"
+      style={{ width: 250 }}
+      {...anchorProps}
+    >
+      <div className="position-absolute top-50 start-50 translate-middle">
+        <ul
+          className={joinClasses(
+            "list-unstyled",
+            isSpecial ? "" : "pe-none opacity-0"
+          )}
+        >
+          {focalPoint}
+        </ul>
+      </div>
       <div
         className={joinClasses(
           "card-header py-3 fw-medium",
           variant ? `text-${variant}` : "",
-          variant ? `bg-${variant}-subtle` : ""
+          variant ? `bg-${variant}-subtle` : "",
+          isSpecial ? "bg-secondary-subtle" : ""
         )}
+        style={isSpecial ? { borderBottomColor: "transparent" } : {}}
       >
         <div className="text-truncate">{renderString(term)}</div>
       </div>
-      <div className="card-body">
+      <div
+        className={joinClasses(
+          "card-body",
+          isSpecial ? "bg-secondary-subtle" : ""
+        )}
+      >
         <ul className="list-unstyled">
           <TruncatedListItem>{renderDate(date)}</TruncatedListItem>
         </ul>
-        <ul className="list-unstyled">
-          <TruncatedListItem className="fw-medium fs-4 text-primary">
-            {renderNumber(value)}
-          </TruncatedListItem>
-          <TruncatedListItem title={renderString(metric)} className="fs-5">
-            {renderString(metric)}
-          </TruncatedListItem>
+        <ul
+          className={joinClasses(
+            "list-unstyled",
+            isSpecial ? "pe-none opacity-0" : ""
+          )}
+        >
+          {focalPoint}
         </ul>
+
         <ul className="list-unstyled mb-0">
           <TruncatedListItem
             className={joinClasses(
@@ -224,7 +266,7 @@ const Card = (props) => {
           <TruncatedListItem>{renderTimeFactor(timeFactor)}</TruncatedListItem>
         </ul>
       </div>
-    </div>
+    </As>
   );
 };
 
