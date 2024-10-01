@@ -7,9 +7,11 @@ import { MainContainer } from "./components/MainContainer";
 import { SubContainer } from "./components/SubContainer";
 import { usePromise } from "./hooks/usePromise";
 
-const cardDataPromise = fetch("data/cardData.json").then((response) =>
-  response.json()
-);
+const allDataPromised = Promise.all(
+  ["cardData", "cpeData", "specialData"].map((fileName) =>
+    fetch(`data/${fileName}.json`).then((response) => response.json())
+  )
+).then((response) => response.flat());
 
 const divisionData = {
   "Student Success & Enrollment Management": {
@@ -44,13 +46,18 @@ const divisionData = {
     icon: "fa-solid fa-hand-fist",
     header: "URM",
   },
+  "CPE Metrics": { icon: "fa-solid fa-user-tie", header: "CPE Metrics" },
 };
 
 // settings for displaying certain sections
 // responsiveness stuff
 
 export default function App() {
-  const cardData = usePromise(cardDataPromise);
+  const cardData = usePromise(allDataPromised);
+
+  // console.log(allData);
+
+  // const cardData = usePromise(cardDataPromise);
 
   const cardsGrouped = {};
 
@@ -64,7 +71,8 @@ export default function App() {
     cardsGrouped[division].push(card);
   });
 
-  console.log(cardsGrouped);
+  const sortSpecialToFront = ({ elementType: a }, { elementType: b }) =>
+    (a === "Special" ? 0 : 1) - (b === "Special" ? 0 : 1);
 
   return (
     <MainContainer>
@@ -74,7 +82,7 @@ export default function App() {
           header={divisionData[division].header}
           key={division}
         >
-          {rowOfCards}
+          {rowOfCards.sort(sortSpecialToFront)}
         </Section>
       ))}
     </MainContainer>
@@ -82,6 +90,17 @@ export default function App() {
 }
 
 const Card = (props) => {
+  const processedProps =
+    props.elementType === "Special"
+      ? {
+          ...Object.fromEntries(
+            Object.entries(props).map(([key]) => [key, ""])
+          ),
+          value: <i className={props.timeFactor}></i>,
+          metric: props.metric,
+        }
+      : props;
+
   const {
     change_perc: changePercentage,
     timeFactor,
@@ -90,7 +109,7 @@ const Card = (props) => {
     value,
     term,
     date,
-  } = props;
+  } = processedProps;
 
   function percentStringToNumber(percentString) {
     const numberString = percentString.replace("%", "");
@@ -170,7 +189,7 @@ const Card = (props) => {
       .join(" ");
 
   return (
-    <div className="card rounded-3 shadow-sm">
+    <div className="card rounded-3 shadow-sm" style={{ width: 250 }}>
       <div
         className={joinClasses(
           "card-header py-3 fw-medium",
@@ -188,7 +207,7 @@ const Card = (props) => {
           <TruncatedListItem className="fw-medium fs-4 text-primary">
             {renderNumber(value)}
           </TruncatedListItem>
-          <TruncatedListItem className="fs-5">
+          <TruncatedListItem title={renderString(metric)} className="fs-5">
             {renderString(metric)}
           </TruncatedListItem>
         </ul>
