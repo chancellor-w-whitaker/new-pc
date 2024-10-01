@@ -1,15 +1,13 @@
 import { allDataPromised } from "./constants/allDataPromised";
 import { linkDataPromise } from "./constants/linkDataPromise";
-import { MainContainer } from "./components/MainContainer";
 import { SubContainer } from "./components/SubContainer";
-import { divisionData } from "./constants/divisionData";
+import { divisionDefs } from "./constants/divisionDefs";
 import { usePromise } from "./hooks/usePromise";
 import { Section } from "./components/Section";
 
-// settings for displaying certain sections
+// settings for displaying only certain sections
 
 // use wrapper
-// fix data directory names
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
@@ -34,11 +32,11 @@ export default function App() {
     (a === "Special" ? 0 : 1) - (b === "Special" ? 0 : 1);
 
   return (
-    <MainContainer>
+    <div>
       {Object.entries(cardsGrouped).map(([division, rowOfCards]) => (
         <Section
-          icon={<i className={divisionData[division].icon}></i>}
-          header={divisionData[division].header}
+          icon={<i className={divisionDefs[division].icon}></i>}
+          header={divisionDefs[division].header}
           key={division}
         >
           {rowOfCards.sort(sortSpecialToFront)}
@@ -97,6 +95,6 @@ export default function App() {
           </div>
         </div>
       </SubContainer>
-    </MainContainer>
+    </div>
   );
 }

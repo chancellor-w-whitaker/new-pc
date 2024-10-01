@@ -1,3 +1,5 @@
-export const linkDataPromise = fetch("data/linkData.json").then((response) =>
-  response.json()
-);
+import { dataDirectory } from "./dataDirectory";
+
+export const linkDataPromise = fetch(
+  `${dataDirectory.folderName}/${dataDirectory.fileNames.linkDataset}`
+).then((response) => response.json());

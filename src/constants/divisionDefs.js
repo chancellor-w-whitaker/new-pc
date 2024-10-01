@@ -1,4 +1,4 @@
-export const divisionData = {
+export const divisionDefs = {
   "Student Success & Enrollment Management": {
     header: "Student Success & Enrollment Management",
     icon: "fa-solid fa-graduation-cap",

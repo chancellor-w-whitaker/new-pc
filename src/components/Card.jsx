@@ -89,9 +89,7 @@ export const Card = (props) => {
   const changeDescription = [
     addMoney(renderNumber(change).replace("-", "")),
     `(${renderChangePercentage(changePercentage)})`,
-  ]
-    .filter((value) => value !== "(ㅤ)")
-    .join(" ");
+  ].filter((value) => value !== "(ㅤ)");
 
   const renderTimeFactor = (param) => {
     if (!param) return "ㅤ";
@@ -116,6 +114,14 @@ export const Card = (props) => {
 
   const variant = getVariant(change);
 
+  if (variant === "success" || `${changeDescription[0]}` === "0") {
+    changeDescription.unshift("🠅");
+  }
+
+  if (variant === "danger") {
+    changeDescription.unshift("🠇");
+  }
+
   const joinClasses = (...classNames) =>
     classNames
       .filter((string) => typeof string === "string" && string.length > 0)
@@ -123,10 +129,10 @@ export const Card = (props) => {
 
   const focalPoint = (
     <>
-      <TruncatedListItem className="fw-medium text-primary fs-4">
+      <TruncatedListItem className="fw-semibold text-primary fs-4">
         {addMoney(renderNumber(value))}
       </TruncatedListItem>
-      <TruncatedListItem title={renderString(metric)}>
+      <TruncatedListItem title={renderString(metric)} className="fs-6">
         {renderString(metric)}
       </TruncatedListItem>
     </>
@@ -134,7 +140,7 @@ export const Card = (props) => {
 
   return (
     <As
-      className="card rounded-3 shadow-sm text-muted small position-relative overflow-hidden text-decoration-none text-center"
+      className="card rounded-3 shadow-sm fw-medium text-muted small position-relative overflow-hidden text-decoration-none text-center"
       style={{ width: 250 }}
       {...anchorProps}
     >
@@ -150,7 +156,7 @@ export const Card = (props) => {
       </div>
       <div
         className={joinClasses(
-          "card-header py-3 fw-medium",
+          "card-header py-3",
           variant ? `text-${variant}` : "",
           variant ? `bg-${variant}-subtle` : "",
           isSpecial ? "bg-secondary-subtle" : ""
@@ -178,14 +184,8 @@ export const Card = (props) => {
         </ul>
 
         <ul className="list-unstyled mb-0">
-          <TruncatedListItem
-            className={joinClasses(
-              "fw-medium",
-              variant ? `text-${variant}` : ""
-            )}
-          >
-            {variant === "success" && "🠅"}
-            {variant === "danger" && "🠇"} {changeDescription}
+          <TruncatedListItem className={variant ? `text-${variant}` : ""}>
+            {changeDescription.join(" ")}
           </TruncatedListItem>
           <TruncatedListItem>{renderTimeFactor(timeFactor)}</TruncatedListItem>
         </ul>
