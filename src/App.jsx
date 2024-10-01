@@ -1,4 +1,6 @@
+import { Pagination, Autoplay } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
+import "swiper/css/pagination";
 import "swiper/css";
 
 import { TruncatedListItem } from "./components/TruncatedListItem";
@@ -51,8 +53,6 @@ const divisionData = {
 
 // settings for displaying certain sections
 // responsiveness stuff
-// smaller font
-// fix link cards
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
@@ -109,6 +109,7 @@ const Card = (props) => {
     change_perc: changePercentage,
     timeFactor,
     link: href,
+    division,
     metric,
     change,
     value,
@@ -136,10 +137,17 @@ const Card = (props) => {
 
   const renderString = (param) => (!param ? "ㅤ" : param);
 
-  const renderDate = (param) =>
-    !param
-      ? "ㅤ"
-      : new Date(param).toLocaleDateString(undefined, { timeZone: "UTC" });
+  const renderDate = (param) => {
+    if (!param) return "ㅤ";
+
+    const string = new Date(param).toLocaleDateString(undefined, {
+      timeZone: "UTC",
+    });
+
+    if (string.toLowerCase() === "invalid date") return "ㅤ";
+
+    return string;
+  };
 
   const renderNumber = (param) => {
     if (param || param === 0) {
@@ -162,8 +170,14 @@ const Card = (props) => {
       ? "ㅤ"
       : renderNumber(percentStringToNumber(param)).replace("-", "");
 
+  const addMoney = (value) =>
+    division.toLowerCase() === "development & alumni engagement" &&
+    value !== "ㅤ"
+      ? `$${value}`
+      : value;
+
   const changeDescription = [
-    renderNumber(change).replace("-", ""),
+    addMoney(renderNumber(change).replace("-", "")),
     `(${renderChangePercentage(changePercentage)})`,
   ]
     .filter((value) => value !== "(ㅤ)")
@@ -199,8 +213,8 @@ const Card = (props) => {
 
   const focalPoint = (
     <>
-      <TruncatedListItem className="fw-medium text-primary fs-3">
-        {renderNumber(value)}
+      <TruncatedListItem className="fw-medium text-primary fs-4">
+        {addMoney(renderNumber(value))}
       </TruncatedListItem>
       <TruncatedListItem title={renderString(metric)}>
         {renderString(metric)}
@@ -210,14 +224,14 @@ const Card = (props) => {
 
   return (
     <As
-      className="card rounded-3 shadow-sm small position-relative overflow-hidden text-decoration-none"
+      className="card rounded-3 shadow-sm text-muted small position-relative overflow-hidden text-decoration-none text-center"
       style={{ width: 250 }}
       {...anchorProps}
     >
       <div className="position-absolute top-50 start-50 translate-middle">
         <ul
           className={joinClasses(
-            "list-unstyled",
+            "list-unstyled mb-0",
             isSpecial ? "" : "pe-none opacity-0"
           )}
         >
@@ -281,7 +295,18 @@ const Section = ({
         {icon}
         <div className="text-truncate">{header}</div>
       </h2>
-      <Swiper className="py-3 text-center" spaceBetween={50} slidesPerView={3}>
+      <Swiper
+        breakpoints={{
+          1200: { slidesPerView: 4 },
+          768: { slidesPerView: 2 },
+          992: { slidesPerView: 3 },
+        }}
+        autoplay={{ pauseOnMouseEnter: true }}
+        pagination={{ clickable: true }}
+        modules={[Autoplay, Pagination]}
+        slidesPerView={1}
+        className="py-3"
+      >
         {children.map((element, index) => (
           <SwiperSlide key={index}>
             <Card {...element}></Card>
