@@ -150,7 +150,7 @@ export const Card = (props) => {
 
   return (
     <As
-      className="card border-secondary rounded-3 shadow-sm fw-medium text-muted small position-relative overflow-hidden text-decoration-none text-center"
+      className="card border-secondary rounded-3 mui-shadow fw-medium text-muted small position-relative overflow-hidden text-decoration-none text-center"
       style={{ width: 250 }}
       {...anchorProps}
     >

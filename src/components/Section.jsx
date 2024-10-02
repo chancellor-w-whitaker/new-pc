@@ -19,15 +19,15 @@ export const Section = ({
       </h2>
       <Swiper
         breakpoints={{
-          1200: { slidesPerView: 4 },
-          768: { slidesPerView: 2 },
-          992: { slidesPerView: 3 },
+          1400: getBreakpointProperties(1224),
+          1200: getBreakpointProperties(1044),
+          768: getBreakpointProperties(624),
+          992: getBreakpointProperties(864),
         }}
         autoplay={{ pauseOnMouseEnter: true }}
         pagination={{ clickable: true }}
         modules={[Autoplay, Pagination]}
         className="pt-3 pb-4"
-        slidesPerView={1}
       >
         {children.map((element, index) => (
           <SwiperSlide key={index}>
@@ -38,3 +38,9 @@ export const Section = ({
     </SubContainer>
   );
 };
+
+const getBreakpointProperties = (width) => ({
+  spaceBetween:
+    (width - Math.floor(width / 250) * 250) / (Math.floor(width / 250) - 1),
+  slidesPerView: Math.floor(width / 250),
+});

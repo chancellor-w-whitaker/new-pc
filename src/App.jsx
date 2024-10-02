@@ -1,16 +1,59 @@
+import { AgGridReact } from "ag-grid-react";
+
+import { sportsDataPromise } from "./constants/sportsDataPromise";
 import { allDataPromised } from "./constants/allDataPromised";
 import { linkDataPromise } from "./constants/linkDataPromise";
 import { SubContainer } from "./components/SubContainer";
-import { divisionDefs } from "./constants/divisionDefs";
-import { usePromise } from "./hooks/usePromise";
-import { Section } from "./components/Section";
+import { divisionDefs } from "./constants/divisionDefs"; // React Data Grid Component
+import { usePromise } from "./hooks/usePromise"; // Mandatory CSS required by the Data Grid
+import { Section } from "./components/Section"; // Optional Theme applied to the Data Grid
 
 // settings for displaying only certain sections
+
+const getSportsGridColumnDefs = (firstSportsRow) => {
+  return Object.keys(firstSportsRow)
+    .map((field) => ({
+      valueFormatter: ({ value }) =>
+        field === "Sport"
+          ? value
+              .split("-")
+              .map((word) =>
+                word === "mens"
+                  ? "Men's"
+                  : word === "womens"
+                  ? "Women's"
+                  : word[0].toUpperCase() + word.substring(1).toLowerCase()
+              )
+              .join(" ")
+          : value,
+      field,
+    }))
+    .sort(
+      ({ field: a }, { field: b }) =>
+        (a === "Sport" ? 0 : 1) - (b === "Sport" ? 0 : 1)
+    );
+};
+
+const onGridSizeChanged = (e) =>
+  e.clientWidth < (e.api.getColumnDefs().length + 1) * 75
+    ? e.api.autoSizeAllColumns()
+    : e.api.sizeColumnsToFit();
+
+const autoSizeStrategy = { type: "fitGridWidth" };
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
 
   const linkData = usePromise(linkDataPromise);
+
+  const sportsData = usePromise(sportsDataPromise);
+
+  const sportsRowData = Array.isArray(sportsData) ? sportsData : [];
+
+  const sportsColumnDefs =
+    Array.isArray(sportsData) && sportsData.length > 0
+      ? getSportsGridColumnDefs(sportsData[0])
+      : [];
 
   const cardsGrouped = {};
 
@@ -45,6 +88,26 @@ export default function App() {
           {rowOfCards.sort(sortByOrderProperty)}
         </Section>
       ))}
+      <SubContainer className="pb-4">
+        <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">
+          <i
+            className="fa-solid fa-ranking-star"
+            style={{ color: "#611f34" }}
+          ></i>
+          <div className="text-truncate">Sports Records</div>
+        </h2>
+        <div
+          className="ag-theme-quartz" // applying the Data Grid theme
+          style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+        >
+          <AgGridReact
+            onGridSizeChanged={onGridSizeChanged}
+            onRowDataUpdated={onGridSizeChanged}
+            columnDefs={sportsColumnDefs}
+            rowData={sportsRowData}
+          />
+        </div>
+      </SubContainer>
       <SubContainer className="pb-4">
         <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">
           <i
