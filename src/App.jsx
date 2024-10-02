@@ -1,14 +1,15 @@
+import { sayHello } from "https://cdn.jsdelivr.net/gh/chriscoyier/personal-cdn@1.0.0/console-log.js";
 import { AgGridReact } from "ag-grid-react";
 
 import { sportsDataPromise } from "./constants/sportsDataPromise";
 import { allDataPromised } from "./constants/allDataPromised";
 import { linkDataPromise } from "./constants/linkDataPromise";
-import { SubContainer } from "./components/SubContainer";
-import { divisionDefs } from "./constants/divisionDefs"; // React Data Grid Component
-import { usePromise } from "./hooks/usePromise"; // Mandatory CSS required by the Data Grid
-import { Section } from "./components/Section"; // Optional Theme applied to the Data Grid
+import { SubContainer } from "./components/SubContainer"; // React Data Grid Component
+import { divisionDefs } from "./constants/divisionDefs"; // Mandatory CSS required by the Data Grid
+import { usePromise } from "./hooks/usePromise";
+import { Section } from "./components/Section";
 
-// settings for displaying only certain sections
+console.log(sayHello());
 
 // .sidearm-schedule-title (for sport year)
 // center everything but sport & year
@@ -19,6 +20,14 @@ import { Section } from "./components/Section"; // Optional Theme applied to the
 // height auto on grid
 // condensed grid & smaller text
 // header names for columns
+
+// what to do with cross country (no record) & other sports with irrelevant records?
+// maybe display last outcome
+// could add to grid with blanks (-) (add to bottom of grid)
+// some kind of note at bottom of table showing as_of_date (retrieved from data)
+
+// add chad to repos tomorrow
+// ie&r github group?? (chad should be owner of repos)
 
 const getSportsGridColumnDefs = (firstSportsRow) => {
   return Object.keys(firstSportsRow)
