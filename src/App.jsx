@@ -12,8 +12,6 @@ export default function App() {
 
   const linkData = usePromise(linkDataPromise);
 
-  console.log(linkData);
-
   const cardsGrouped = {};
 
   const cards = Array.isArray(cardData) ? cardData : [];
@@ -26,8 +24,9 @@ export default function App() {
     cardsGrouped[division].push(card);
   });
 
-  const sortSpecialToFront = ({ elementType: a }, { elementType: b }) =>
-    (a === "Special" ? 0 : 1) - (b === "Special" ? 0 : 1);
+  console.log(cardsGrouped);
+
+  const sortByOrderProperty = ({ order: a }, { order: b }) => a - b;
 
   return (
     <div>
@@ -43,7 +42,7 @@ export default function App() {
           header={divisionDefs[division].header}
           key={division}
         >
-          {rowOfCards.sort(sortSpecialToFront)}
+          {rowOfCards.sort(sortByOrderProperty)}
         </Section>
       ))}
       <SubContainer className="pb-4">

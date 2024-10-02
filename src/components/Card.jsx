@@ -166,7 +166,7 @@ export const Card = (props) => {
       </div>
       <div
         className={joinClasses(
-          "card-header py-3",
+          "card-header py-3 fw-semibold",
           variant ? `text-${variant}` : "",
           variant ? `bg-${variant}-subtle` : "",
           isSpecial ? "bg-secondary-subtle" : ""
@@ -192,7 +192,6 @@ export const Card = (props) => {
         >
           {focalPoint}
         </ul>
-
         <ul className="list-unstyled mb-0">
           <TruncatedListItem className={variant ? `text-${variant}` : ""}>
             {changeDescription.join(" ")}
