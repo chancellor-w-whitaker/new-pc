@@ -10,6 +10,16 @@ import { Section } from "./components/Section"; // Optional Theme applied to the
 
 // settings for displaying only certain sections
 
+// .sidearm-schedule-title (for sport year)
+// center everything but sport & year
+// PCT is Conf PCT
+// could calculate separate PCT
+// highlight green & red (maybe icons for positive or negative instead of bg)
+// sport name should link  to schedule
+// height auto on grid
+// condensed grid & smaller text
+// header names for columns
+
 const getSportsGridColumnDefs = (firstSportsRow) => {
   return Object.keys(firstSportsRow)
     .map((field) => ({
@@ -38,8 +48,6 @@ const onGridSizeChanged = (e) =>
   e.clientWidth < (e.api.getColumnDefs().length + 1) * 75
     ? e.api.autoSizeAllColumns()
     : e.api.sizeColumnsToFit();
-
-const autoSizeStrategy = { type: "fitGridWidth" };
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
