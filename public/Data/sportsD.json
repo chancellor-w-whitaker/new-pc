@@ -1,132 +1,135 @@
 [
-    {
-        "Overall": "21-37",
-        "PCT": ".467",
-        "Conf": "14-16",
-        "Streak": "L2",
-        "Home": "13-17",
-        "Away": "8-18",
-        "Neutral": "0-2",
-        "Sport": "baseball"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "mens-basketball"
-    },
-    {
-        "Overall": "3-2",
-        "PCT": "1.000",
-        "Conf": "1-0",
-        "Streak": "W3",
-        "Home": "3-0",
-        "Away": "0-2",
-        "Neutral": "0-0",
-        "Sport": "football"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "mens-golf"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "mens-tennis"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "track-and-field"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "womens-basketball"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "womens-beach-volleyball"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "womens-golf"
-    },
-    {
-        "Overall": "6-5-1",
-        "PCT": ".750",
-        "Conf": "3-1",
-        "Streak": "W3",
-        "Home": "4-2-1",
-        "Away": "2-3",
-        "Neutral": "0-0",
-        "Sport": "womens-soccer"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "softball"
-    },
-    {
-        "Overall": "0-0",
-        "PCT": ".000",
-        "Conf": "0-0",
-        "Streak": null,
-        "Home": "0-0",
-        "Away": "0-0",
-        "Neutral": "0-0",
-        "Sport": "womens-tennis"
-    },
-    {
-        "Overall": "10-5",
-        "PCT": ".500",
-        "Conf": "1-1",
-        "Streak": "L1",
-        "Home": "4-1",
-        "Away": "3-1",
-        "Neutral": "3-3",
-        "Sport": "womens-volleyball"
-    }
+  {
+    "Overall": "21-37",
+    "PCT": ".467",
+    "Conf": "14-16",
+    "Streak": "L2",
+    "Home": "13-17",
+    "Away": "8-18",
+    "Neutral": "0-2",
+    "Title": "2024 Baseball Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Men's Basketball Schedule"
+  },
+  {
+    "Overall": "3-2",
+    "PCT": "1.000",
+    "Conf": "1-0",
+    "Streak": "W3",
+    "Home": "3-0",
+    "Away": "0-2",
+    "Neutral": "0-0",
+    "Title": "2024 Football Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Men's Golf Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Men's Tennis Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2023-24 Track & Field Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Women's Basketball Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Beach Volleyball Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Women's Golf Schedule"
+  },
+  {
+    "Overall": "6-5-1",
+    "PCT": ".750",
+    "Conf": "3-1",
+    "Streak": "W3",
+    "Home": "4-2-1",
+    "Away": "2-3",
+    "Neutral": "0-0",
+    "Title": "2024 Soccer Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024 Fall Softball Schedule"
+  },
+  {
+    "Overall": "0-0",
+    "PCT": ".000",
+    "Conf": "0-0",
+    "Streak": null,
+    "Home": "0-0",
+    "Away": "0-0",
+    "Neutral": "0-0",
+    "Title": "2024-25 Women's Tennis Schedule"
+  },
+  {
+    "Overall": "10-5",
+    "PCT": ".500",
+    "Conf": "1-1",
+    "Streak": "L1",
+    "Home": "4-1",
+    "Away": "3-1",
+    "Neutral": "3-3",
+    "Title": "2024 Volleyball Schedule"
+  },
+  {
+    "Title": "2024 Cross Country Schedule"
+  }
 ]

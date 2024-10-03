@@ -2,7 +2,8 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-sports_with_records = [
+
+sports = [
     "baseball",
     "mens-basketball",
     "football",
@@ -16,34 +17,51 @@ sports_with_records = [
     "softball",
     "womens-tennis",
     "womens-volleyball",
+    "cross-country",
 ]
 
-sports_without_records = ["cross-country"]
 
+def get_record(sport):
+    request = requests.get(f"https://ekusports.com/sports/{sport}/schedule")
 
-def get_record(sport_name):
-    r = requests.get(f"https://ekusports.com/sports/{sport_name}/schedule")
-    soup = BeautifulSoup(r.content, "html.parser")
-    s = soup.find("div", class_="sidearm-schedule-record")
-    content = s.find_all("li")
-    result = list(map(lambda li: li.find_all("span"), content))
-    for i in range(len(result)):
-        pair = list(map(lambda span: span.string, result[i]))
-        result[i] = pair
-    my_dict = dict(result)
-    my_dict["Sport"] = sport_name
+    soup = BeautifulSoup(request.content, "html.parser")
+
+    title = soup.find("div", class_="sidearm-schedule-title")
+
+    header_string = title.find("h2").string
+
+    if sport == "cross-country":
+
+        my_dict = dict()
+
+        my_dict["Title"] = header_string
+
+        return my_dict
+
+    record = soup.find("div", class_="sidearm-schedule-record")
+
+    items = record.find_all("li")
+
+    spans = list(map(lambda li: li.find_all("span"), items))
+
+    for index in range(len(spans)):
+
+        stat = list(map(lambda span: span.string, spans[index]))
+
+        spans[index] = stat
+
+    my_dict = dict(spans)
+
+    my_dict["Title"] = header_string
+
     return my_dict
 
 
-all_records = list(map(lambda sport: get_record(sport), sports_with_records))
+all_records = list(map(lambda sport: get_record(sport), sports))
 
-with open("data.json", "w") as f:
-    json.dump(all_records, f, indent=4)  # indent for pretty formatting
 
 print(all_records)
 
 
-# Double all numbers using map and lambda
-# numbers = (1, 2, 3, 4)
-# result = map(lambda x: x + x, numbers)
-# print(list(result))
+with open("data.json", "w") as f:
+    json.dump(all_records, f, indent=4)  # indent for pretty formatting

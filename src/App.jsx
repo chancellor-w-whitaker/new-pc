@@ -1,25 +1,24 @@
-import { sayHello } from "https://cdn.jsdelivr.net/gh/chriscoyier/personal-cdn@1.0.0/console-log.js";
 import { AgGridReact } from "ag-grid-react";
 
+import { getSportsGridColumnDefs } from "./helpers/getSportsGridColumnDefs";
+import { intelligentAutoSize } from "./helpers/intelligentAutoSize";
 import { sportsDataPromise } from "./constants/sportsDataPromise";
 import { allDataPromised } from "./constants/allDataPromised";
 import { linkDataPromise } from "./constants/linkDataPromise";
-import { SubContainer } from "./components/SubContainer"; // React Data Grid Component
-import { divisionDefs } from "./constants/divisionDefs"; // Mandatory CSS required by the Data Grid
+import { SubContainer } from "./components/SubContainer";
+import { divisionDefs } from "./constants/divisionDefs";
 import { usePromise } from "./hooks/usePromise";
 import { Section } from "./components/Section";
 
-console.log(sayHello());
-
-// .sidearm-schedule-title (for sport year)
-// center everything but sport & year
-// PCT is Conf PCT
-// could calculate separate PCT
-// highlight green & red (maybe icons for positive or negative instead of bg)
-// sport name should link  to schedule
-// height auto on grid
-// condensed grid & smaller text
-// header names for columns
+// * .sidearm-schedule-title (for sport year)
+// ? center everything but sport & year (opted to right align)
+// ? PCT is Conf PCT (opted to arrange columns more clearly)
+// ! could calculate separate PCT
+// ? highlight green & red (maybe icons for positive or negative instead of bg) (opted to do bg for brevity's sake)
+// sport name should link to schedule
+// * height auto on grid
+// * condensed grid & smaller text
+// ? header names for columns (opted to not distinguish percentage as conf percentage in favor column arrangement)
 
 // what to do with cross country (no record) & other sports with irrelevant records?
 // maybe display last outcome
@@ -28,35 +27,6 @@ console.log(sayHello());
 
 // add chad to repos tomorrow
 // ie&r github group?? (chad should be owner of repos)
-
-const getSportsGridColumnDefs = (firstSportsRow) => {
-  return Object.keys(firstSportsRow)
-    .map((field) => ({
-      valueFormatter: ({ value }) =>
-        field === "Sport"
-          ? value
-              .split("-")
-              .map((word) =>
-                word === "mens"
-                  ? "Men's"
-                  : word === "womens"
-                  ? "Women's"
-                  : word[0].toUpperCase() + word.substring(1).toLowerCase()
-              )
-              .join(" ")
-          : value,
-      field,
-    }))
-    .sort(
-      ({ field: a }, { field: b }) =>
-        (a === "Sport" ? 0 : 1) - (b === "Sport" ? 0 : 1)
-    );
-};
-
-const onGridSizeChanged = (e) =>
-  e.clientWidth < (e.api.getColumnDefs().length + 1) * 75
-    ? e.api.autoSizeAllColumns()
-    : e.api.sizeColumnsToFit();
 
 export default function App() {
   const cardData = usePromise(allDataPromised);
@@ -83,8 +53,6 @@ export default function App() {
 
     cardsGrouped[division].push(card);
   });
-
-  console.log(cardsGrouped);
 
   const sortByOrderProperty = ({ order: a }, { order: b }) => a - b;
 
@@ -114,14 +82,14 @@ export default function App() {
           <div className="text-truncate">Sports Records</div>
         </h2>
         <div
-          className="ag-theme-quartz" // applying the Data Grid theme
-          style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+          className="ag-theme-balham" // applying the Data Grid theme
         >
           <AgGridReact
-            onGridSizeChanged={onGridSizeChanged}
-            onRowDataUpdated={onGridSizeChanged}
+            onGridSizeChanged={intelligentAutoSize}
+            onRowDataUpdated={intelligentAutoSize}
             columnDefs={sportsColumnDefs}
             rowData={sportsRowData}
+            domLayout="autoHeight"
           />
         </div>
       </SubContainer>

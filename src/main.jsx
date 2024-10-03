@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import "./index.css";
 
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.css";
+import "ag-grid-community/styles/ag-theme-balham.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
