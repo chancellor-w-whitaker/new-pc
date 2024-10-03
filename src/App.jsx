@@ -1,6 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 
-import { getSportsGridColumnDefs } from "./helpers/getSportsGridColumnDefs";
+import { moveEmptyRecordsToBottom } from "./helpers/moveEmptyRecordsToBottom.js";
+import { getSportsGridColumnDefs } from "./helpers/getSportsGridColumnDefs.jsx";
 import { intelligentAutoSize } from "./helpers/intelligentAutoSize";
 import { sportsDataPromise } from "./constants/sportsDataPromise";
 import { allDataPromised } from "./constants/allDataPromised";
@@ -15,15 +16,16 @@ import { Section } from "./components/Section";
 // ? PCT is Conf PCT (opted to arrange columns more clearly)
 // ! could calculate separate PCT
 // ? highlight green & red (maybe icons for positive or negative instead of bg) (opted to do bg for brevity's sake)
-// sport name should link to schedule
+// * sport name should link to schedule
 // * height auto on grid
 // * condensed grid & smaller text
 // ? header names for columns (opted to not distinguish percentage as conf percentage in favor column arrangement)
 
-// what to do with cross country (no record) & other sports with irrelevant records?
+// ? what to do with cross country (no record) & other sports with irrelevant records?
+// ! which sports are irrelevant? will handle them the same way cross-country is handled in the python file
 // maybe display last outcome
 // could add to grid with blanks (-) (add to bottom of grid)
-// some kind of note at bottom of table showing as_of_date (retrieved from data)
+// * some kind of note at bottom of table showing as_of_date (retrieved from data)
 
 // add chad to repos tomorrow
 // ie&r github group?? (chad should be owner of repos)
@@ -35,12 +37,19 @@ export default function App() {
 
   const sportsData = usePromise(sportsDataPromise);
 
-  const sportsRowData = Array.isArray(sportsData) ? sportsData : [];
+  const sportsRowData = moveEmptyRecordsToBottom(
+    Array.isArray(sportsData) ? sportsData : []
+  );
 
   const sportsColumnDefs =
     Array.isArray(sportsData) && sportsData.length > 0
       ? getSportsGridColumnDefs(sportsData[0])
       : [];
+
+  const sportsAsOfDate =
+    Array.isArray(sportsRowData) &&
+    sportsRowData.length > 0 &&
+    sportsRowData[0]["As of"];
 
   const cardsGrouped = {};
 
@@ -92,6 +101,7 @@ export default function App() {
             domLayout="autoHeight"
           />
         </div>
+        <div className="pt-3">As of: {sportsAsOfDate}</div>
       </SubContainer>
       <SubContainer className="pb-4">
         <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">

@@ -1,7 +1,11 @@
 import json
 import requests
+from datetime import date
 from bs4 import BeautifulSoup
 
+today = date.today()
+
+d1 = today.strftime("%B %d, %Y")
 
 sports = [
     "baseball",
@@ -22,19 +26,25 @@ sports = [
 
 
 def get_record(sport):
-    request = requests.get(f"https://ekusports.com/sports/{sport}/schedule")
+    website = f"https://ekusports.com/sports/{sport}/schedule"
+
+    request = requests.get(website)
 
     soup = BeautifulSoup(request.content, "html.parser")
 
     title = soup.find("div", class_="sidearm-schedule-title")
 
-    header_string = title.find("h2").string
+    header = title.find("h2").string
 
     if sport == "cross-country":
 
         my_dict = dict()
 
-        my_dict["Title"] = header_string
+        my_dict["Title"] = header
+
+        my_dict["Website"] = website
+
+        my_dict["As of"] = d1
 
         return my_dict
 
@@ -52,7 +62,11 @@ def get_record(sport):
 
     my_dict = dict(spans)
 
-    my_dict["Title"] = header_string
+    my_dict["Title"] = header
+
+    my_dict["Website"] = website
+
+    my_dict["As of"] = d1
 
     return my_dict
 

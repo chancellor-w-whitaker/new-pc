@@ -7,7 +7,9 @@
     "Home": "13-17",
     "Away": "8-18",
     "Neutral": "0-2",
-    "Title": "2024 Baseball Schedule"
+    "Title": "2024 Baseball Schedule",
+    "Website": "https://ekusports.com/sports/baseball/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -17,7 +19,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Men's Basketball Schedule"
+    "Title": "2024-25 Men's Basketball Schedule",
+    "Website": "https://ekusports.com/sports/mens-basketball/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "3-2",
@@ -27,7 +31,9 @@
     "Home": "3-0",
     "Away": "0-2",
     "Neutral": "0-0",
-    "Title": "2024 Football Schedule"
+    "Title": "2024 Football Schedule",
+    "Website": "https://ekusports.com/sports/football/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -37,7 +43,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Men's Golf Schedule"
+    "Title": "2024-25 Men's Golf Schedule",
+    "Website": "https://ekusports.com/sports/mens-golf/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -47,7 +55,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Men's Tennis Schedule"
+    "Title": "2024-25 Men's Tennis Schedule",
+    "Website": "https://ekusports.com/sports/mens-tennis/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -57,7 +67,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2023-24 Track & Field Schedule"
+    "Title": "2023-24 Track & Field Schedule",
+    "Website": "https://ekusports.com/sports/track-and-field/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -67,7 +79,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Women's Basketball Schedule"
+    "Title": "2024-25 Women's Basketball Schedule",
+    "Website": "https://ekusports.com/sports/womens-basketball/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -77,7 +91,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Beach Volleyball Schedule"
+    "Title": "2024-25 Beach Volleyball Schedule",
+    "Website": "https://ekusports.com/sports/womens-beach-volleyball/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -87,7 +103,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Women's Golf Schedule"
+    "Title": "2024-25 Women's Golf Schedule",
+    "Website": "https://ekusports.com/sports/womens-golf/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "6-5-1",
@@ -97,7 +115,9 @@
     "Home": "4-2-1",
     "Away": "2-3",
     "Neutral": "0-0",
-    "Title": "2024 Soccer Schedule"
+    "Title": "2024 Soccer Schedule",
+    "Website": "https://ekusports.com/sports/womens-soccer/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -107,7 +127,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024 Fall Softball Schedule"
+    "Title": "2024 Fall Softball Schedule",
+    "Website": "https://ekusports.com/sports/softball/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "0-0",
@@ -117,7 +139,9 @@
     "Home": "0-0",
     "Away": "0-0",
     "Neutral": "0-0",
-    "Title": "2024-25 Women's Tennis Schedule"
+    "Title": "2024-25 Women's Tennis Schedule",
+    "Website": "https://ekusports.com/sports/womens-tennis/schedule",
+    "As of": "October 03, 2024"
   },
   {
     "Overall": "10-5",
@@ -127,9 +151,13 @@
     "Home": "4-1",
     "Away": "3-1",
     "Neutral": "3-3",
-    "Title": "2024 Volleyball Schedule"
+    "Title": "2024 Volleyball Schedule",
+    "Website": "https://ekusports.com/sports/womens-volleyball/schedule",
+    "As of": "October 03, 2024"
   },
   {
-    "Title": "2024 Cross Country Schedule"
+    "Title": "2024 Cross Country Schedule",
+    "Website": "https://ekusports.com/sports/cross-country/schedule",
+    "As of": "October 03, 2024"
   }
 ]

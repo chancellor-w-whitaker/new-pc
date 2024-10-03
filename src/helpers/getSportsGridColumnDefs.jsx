@@ -1,22 +1,20 @@
 export const getSportsGridColumnDefs = (firstSportsRow) =>
   sortColumnDefs(
     Object.keys(firstSportsRow).map((field) => ({
-      valueFormatter: ({ value }) =>
-        field === "Title"
-          ? value
-              .split(" ")
-              .filter((word) => word.toLowerCase() !== "schedule")
-              .join(" ")
-          : value,
+      cellRenderer: field === "Title" ? titleRenderer : null,
       type: field === "Title" ? null : "rightAligned",
       cellClassRules: getCellClassRules(field),
       headerName: getHeaderName(field),
       field,
     }))
-  );
+  ).filter(({ field }) => field !== "Website" && field !== "As of");
 
 const getHeaderName = (field) => {
-  const specificHeaderNames = { Conf: "Conference", PCT: "Percentage" };
+  const specificHeaderNames = {
+    Conf: "Conference",
+    PCT: "Percentage",
+    Title: "Sport",
+  };
 
   if (field in specificHeaderNames) {
     return specificHeaderNames[field];
@@ -43,17 +41,19 @@ const getCellClassRules = (field) => {
 
   if (winLossFields.has(field)) {
     return {
-      "bg-success-subtle": (params) =>
-        params.value &&
-        Number(params.value.split("-")[0]) > Number(params.value.split("-")[1]),
-      "bg-danger-subtle": (params) =>
-        params.value &&
-        Number(params.value.split("-")[0]) < Number(params.value.split("-")[1]),
+      "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
+        value && (value === "0-0" || Overall === "0-0"),
+      "bg-success-subtle": ({ value }) =>
+        value && Number(value.split("-")[0]) > Number(value.split("-")[1]),
+      "bg-danger-subtle": ({ value }) =>
+        value && Number(value.split("-")[0]) < Number(value.split("-")[1]),
     };
   }
 
   if (field === "Streak") {
     return {
+      "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
+        value && Overall === "0-0",
       "bg-success-subtle": (params) =>
         params.value && `${params.value}`.startsWith("W"),
       "bg-danger-subtle": (params) =>
@@ -67,8 +67,23 @@ const getCellClassRules = (field) => {
         value && !Overall.startsWith("0-0") && Number(value) > 0.5,
       "bg-danger-subtle": ({ data: { Overall }, value }) =>
         value && !Overall.startsWith("0-0") && Number(value) < 0.5,
+      "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
+        value && Overall.startsWith("0-0"),
     };
   }
 
   return {};
+};
+
+const titleRenderer = ({ value, data }) => {
+  const sport = value
+    .split(" ")
+    .filter((word) => word.toLowerCase() !== "schedule")
+    .join(" ");
+
+  return (
+    <a href={data.Website} target="_blank" title={sport}>
+      {sport}
+    </a>
+  );
 };
