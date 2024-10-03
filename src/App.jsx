@@ -11,6 +11,9 @@ import { divisionDefs } from "./constants/divisionDefs";
 import { usePromise } from "./hooks/usePromise";
 import { Section } from "./components/Section";
 
+// up arrow to dot on green
+// down arrow to dot on red
+
 // * .sidearm-schedule-title (for sport year)
 // ? center everything but sport & year (opted to right align)
 // ? PCT is Conf PCT (opted to arrange columns more clearly)
@@ -30,6 +33,11 @@ import { Section } from "./components/Section";
 // add chad to repos tomorrow
 // ie&r github group?? (chad should be owner of repos)
 
+const sumArray = (array) =>
+  array.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
+
 export default function App() {
   const cardData = usePromise(allDataPromised);
 
@@ -38,12 +46,30 @@ export default function App() {
   const sportsData = usePromise(sportsDataPromise);
 
   const sportsRowData = moveEmptyRecordsToBottom(
-    Array.isArray(sportsData) ? sportsData : []
+    Array.isArray(sportsData)
+      ? sportsData.map((row) => ({
+          ...row,
+          "Overall PCT": !row.Overall
+            ? null
+            : `${row.Overall}`.startsWith("0-0")
+            ? ".000"
+            : [
+                (
+                  Number(row.Overall.split("-")[0]) /
+                  sumArray(
+                    row.Overall.split("-").map((string) => Number(string))
+                  )
+                ).toFixed(3),
+              ].map((string) =>
+                string[0] === "0" ? string.substring(1) : string
+              )[0],
+        }))
+      : []
   );
 
   const sportsColumnDefs =
-    Array.isArray(sportsData) && sportsData.length > 0
-      ? getSportsGridColumnDefs(sportsData[0])
+    Array.isArray(sportsRowData) && sportsRowData.length > 0
+      ? getSportsGridColumnDefs(sportsRowData[0])
       : [];
 
   const sportsAsOfDate =
@@ -91,7 +117,7 @@ export default function App() {
           <div className="text-truncate">Sports Records</div>
         </h2>
         <div
-          className="ag-theme-balham" // applying the Data Grid theme
+          className="ag-theme-balham font-monospace" // applying the Data Grid theme
         >
           <AgGridReact
             onGridSizeChanged={intelligentAutoSize}

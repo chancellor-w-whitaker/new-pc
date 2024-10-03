@@ -2,6 +2,7 @@ export const getSportsGridColumnDefs = (firstSportsRow) =>
   sortColumnDefs(
     Object.keys(firstSportsRow).map((field) => ({
       cellRenderer: field === "Title" ? titleRenderer : null,
+      suppressSizeToFit: field === "Title" ? true : false,
       type: field === "Title" ? null : "rightAligned",
       cellClassRules: getCellClassRules(field),
       headerName: getHeaderName(field),
@@ -11,8 +12,9 @@ export const getSportsGridColumnDefs = (firstSportsRow) =>
 
 const getHeaderName = (field) => {
   const specificHeaderNames = {
+    "Overall PCT": "Overall %",
+    PCT: "Conference %",
     Conf: "Conference",
-    PCT: "Percentage",
     Title: "Sport",
   };
 
@@ -24,7 +26,7 @@ const getHeaderName = (field) => {
 };
 
 const sortColumnDefs = (columnDefs) => {
-  const definiteOrder = ["Title", "Conf", "PCT"];
+  const definiteOrder = ["Title", "Overall", "Overall PCT", "Conf", "PCT"];
 
   const set = new Set(definiteOrder);
 
@@ -43,9 +45,9 @@ const getCellClassRules = (field) => {
     return {
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && (value === "0-0" || Overall === "0-0"),
-      "bg-success-subtle": ({ value }) =>
+      "text-success fw-bold": ({ value }) =>
         value && Number(value.split("-")[0]) > Number(value.split("-")[1]),
-      "bg-danger-subtle": ({ value }) =>
+      "text-danger fw-bold": ({ value }) =>
         value && Number(value.split("-")[0]) < Number(value.split("-")[1]),
     };
   }
@@ -54,18 +56,18 @@ const getCellClassRules = (field) => {
     return {
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && Overall === "0-0",
-      "bg-success-subtle": (params) =>
+      "text-success fw-bold": (params) =>
         params.value && `${params.value}`.startsWith("W"),
-      "bg-danger-subtle": (params) =>
+      "text-danger fw-bold": (params) =>
         params.value && `${params.value}`.startsWith("L"),
     };
   }
 
-  if (field === "PCT") {
+  if (field === "PCT" || field === "Overall PCT") {
     return {
-      "bg-success-subtle": ({ data: { Overall }, value }) =>
+      "text-success fw-bold": ({ data: { Overall }, value }) =>
         value && !Overall.startsWith("0-0") && Number(value) > 0.5,
-      "bg-danger-subtle": ({ data: { Overall }, value }) =>
+      "text-danger fw-bold": ({ data: { Overall }, value }) =>
         value && !Overall.startsWith("0-0") && Number(value) < 0.5,
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && Overall.startsWith("0-0"),
@@ -82,7 +84,12 @@ const titleRenderer = ({ value, data }) => {
     .join(" ");
 
   return (
-    <a href={data.Website} target="_blank" title={sport}>
+    <a
+      className="text-decoration-none"
+      href={data.Website}
+      target="_blank"
+      title={sport}
+    >
       {sport}
     </a>
   );

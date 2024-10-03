@@ -36,9 +36,20 @@ def get_record(sport):
 
     header = title.find("h2").string
 
-    if sport == "cross-country":
+    record = soup.find("div", class_="sidearm-schedule-record")
 
-        my_dict = dict()
+    if record:
+        items = record.find_all("li")
+
+        spans = list(map(lambda li: li.find_all("span"), items))
+
+        for index in range(len(spans)):
+
+            stat = list(map(lambda span: span.string, spans[index]))
+
+            spans[index] = stat
+
+        my_dict = dict(spans)
 
         my_dict["Title"] = header
 
@@ -48,19 +59,7 @@ def get_record(sport):
 
         return my_dict
 
-    record = soup.find("div", class_="sidearm-schedule-record")
-
-    items = record.find_all("li")
-
-    spans = list(map(lambda li: li.find_all("span"), items))
-
-    for index in range(len(spans)):
-
-        stat = list(map(lambda span: span.string, spans[index]))
-
-        spans[index] = stat
-
-    my_dict = dict(spans)
+    my_dict = dict()
 
     my_dict["Title"] = header
 
