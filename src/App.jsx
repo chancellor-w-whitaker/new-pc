@@ -117,7 +117,7 @@ export default function App() {
           <div className="text-truncate">Sports Records</div>
         </h2>
         <div
-          className="ag-theme-balham font-monospace" // applying the Data Grid theme
+          className="ag-theme-balham" // applying the Data Grid theme
         >
           <AgGridReact
             onGridSizeChanged={intelligentAutoSize}

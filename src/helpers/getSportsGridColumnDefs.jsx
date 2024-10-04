@@ -43,34 +43,42 @@ const getCellClassRules = (field) => {
 
   if (winLossFields.has(field)) {
     return {
+      "text-success fw-bold positive-record-stat": ({ value }) =>
+        value && Number(value.split("-")[0]) > Number(value.split("-")[1]),
+      "text-danger fw-bold negative-record-stat": ({ value }) =>
+        value && Number(value.split("-")[0]) < Number(value.split("-")[1]),
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && (value === "0-0" || Overall === "0-0"),
-      "text-success fw-bold": ({ value }) =>
-        value && Number(value.split("-")[0]) > Number(value.split("-")[1]),
-      "text-danger fw-bold": ({ value }) =>
-        value && Number(value.split("-")[0]) < Number(value.split("-")[1]),
+      "neutral-record-stat": ({ value }) =>
+        value && Number(value.split("-")[0]) === Number(value.split("-")[1]),
     };
   }
 
   if (field === "Streak") {
     return {
+      "text-success fw-bold positive-record-stat": (params) =>
+        params.value && `${params.value}`.startsWith("W"),
+      "text-danger fw-bold negative-record-stat": (params) =>
+        params.value && `${params.value}`.startsWith("L"),
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && Overall === "0-0",
-      "text-success fw-bold": (params) =>
-        params.value && `${params.value}`.startsWith("W"),
-      "text-danger fw-bold": (params) =>
-        params.value && `${params.value}`.startsWith("L"),
     };
   }
 
   if (field === "PCT" || field === "Overall PCT") {
     return {
-      "text-success fw-bold": ({ data: { Overall }, value }) =>
-        value && !Overall.startsWith("0-0") && Number(value) > 0.5,
-      "text-danger fw-bold": ({ data: { Overall }, value }) =>
-        value && !Overall.startsWith("0-0") && Number(value) < 0.5,
+      "text-success fw-bold positive-record-stat": ({
+        data: { Overall },
+        value,
+      }) => value && !Overall.startsWith("0-0") && Number(value) > 0.5,
+      "text-danger fw-bold negative-record-stat": ({
+        data: { Overall },
+        value,
+      }) => value && !Overall.startsWith("0-0") && Number(value) < 0.5,
       "text-opacity-25 text-body": ({ data: { Overall }, value }) =>
         value && Overall.startsWith("0-0"),
+      "neutral-record-stat": ({ value }) =>
+        value && (`${value}` === ".500" || `${value}` === ".000"),
     };
   }
 
