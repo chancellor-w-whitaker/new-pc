@@ -92,24 +92,25 @@ export default function App() {
   const sortByOrderProperty = ({ order: a }, { order: b }) => a - b;
 
   return (
-    <div>
-      <h1 className="mb-0 text-center">President&apos;s Cabinet Dashboard</h1>
-      {Object.entries(cardsGrouped).map(([division, rowOfCards]) => (
-        <Section
-          icon={
-            <i
-              className={divisionDefs[division].icon}
-              style={{ color: "#611f34" }}
-            ></i>
-          }
-          header={divisionDefs[division].header}
-          key={division}
-        >
-          {rowOfCards.sort(sortByOrderProperty)}
-        </Section>
-      ))}
-      <SubContainer className="pb-4">
-        <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">
+    <>
+      {Object.entries(cardsGrouped)
+        .filter(([division]) => division)
+        .map(([division, rowOfCards]) => (
+          <Section
+            icon={
+              <i
+                className={divisionDefs[division].icon}
+                style={{ color: "#611f34" }}
+              ></i>
+            }
+            header={divisionDefs[division].header}
+            key={division}
+          >
+            {rowOfCards.sort(sortByOrderProperty)}
+          </Section>
+        ))}
+      <SubContainer>
+        <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3 h4">
           <i
             className="fa-solid fa-ranking-star"
             style={{ color: "#611f34" }}
@@ -129,8 +130,8 @@ export default function App() {
         </div>
         <div className="pt-3">As of: {sportsAsOfDate}</div>
       </SubContainer>
-      <SubContainer className="pb-4">
-        <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3">
+      <SubContainer>
+        <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-3 h4">
           <i
             className="fa-solid fa-arrow-up-right-from-square"
             style={{ color: "#611f34" }}
@@ -185,6 +186,6 @@ export default function App() {
           </div>
         </div>
       </SubContainer>
-    </div>
+    </>
   );
 }

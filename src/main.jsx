@@ -10,7 +10,7 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Wrapper>
+    <Wrapper heading="President's Cabinet Dashboard">
       <App />
     </Wrapper>
   </StrictMode>

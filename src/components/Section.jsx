@@ -13,7 +13,7 @@ export const Section = ({
 }) => {
   return (
     <SubContainer>
-      <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-0">
+      <h2 className="pb-3 border-bottom d-flex align-items-center gap-2 mb-0 h4">
         {icon}
         <div className="text-truncate">{header}</div>
       </h2>
